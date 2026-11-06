@@ -1,0 +1,8 @@
+{
+  "name": "MOKHS.STORE – Smart Electronics Pakistan",
+  "description": "Premium Pakistani electronics e-commerce store offering smartphones, laptops, audio, smart watches, and gadgets with nationwide Cash on Delivery and warranty.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
