@@ -213,14 +213,6 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <button
-                  onClick={() => setActivePolicyModal('warranty')}
-                  className="hover:text-white transition-colors cursor-pointer"
-                >
-                  1-Year Official Warranty Policy
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => setActivePolicyModal('returns')}
                   className="hover:text-white transition-colors cursor-pointer"
                 >

@@ -93,10 +93,6 @@ export const HeroBanner: React.FC = () => {
                 <Truck className="w-4 h-4 text-blue-400 shrink-0" />
                 <span className="text-slate-300 font-medium">TCS / Leopards Delivery Nationwide</span>
               </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-slate-300 font-medium">6 Months MOKHS Replacement Warranty</span>
-              </div>
             </div>
           </div>
 
