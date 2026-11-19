@@ -62,6 +62,20 @@ export const MotionAIStudio: React.FC<MotionAIStudioProps> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const canRecord = useMemo(() => recordingSupported(), []);
 
+  // Hidden from customers: the launcher only appears on www.mokhs.store/#studio
+  const [studioMode, setStudioMode] = useState<boolean>(() => {
+    try {
+      return window.location.hash === '#studio';
+    } catch {
+      return false;
+    }
+  });
+  useEffect(() => {
+    const onHash = () => setStudioMode(window.location.hash === '#studio');
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
   // Slash-command autocomplete like "/vfx structural assem" → suggestions
   const suggestions = useMemo(() => {
     const p = prompt.toLowerCase().trim();
@@ -200,6 +214,7 @@ export const MotionAIStudio: React.FC<MotionAIStudioProps> = ({
 
   // ---------- Launcher ----------
   if (!open) {
+    if (!studioMode) return null;
     return (
       <button
         type="button"

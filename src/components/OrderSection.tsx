@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Copy, ExternalLink } from 'lucide-react';
+import { Check, Copy, ExternalLink, MessageCircle } from 'lucide-react';
 import { BOTTLE_SPECS, type BottleIndex, type PumpFinish } from '../three/types';
 
 interface OrderSectionProps {
@@ -9,7 +9,9 @@ interface OrderSectionProps {
   onSelectFinish: (finish: PumpFinish) => void;
 }
 
-const WHATSAPP_NUMBER = ''; // Set e.g. "923001234567" to route directly
+// Orders are sent to this WhatsApp number (country code, no + or spaces)
+const WHATSAPP_NUMBER = '923000249960';
+const WHATSAPP_DISPLAY = '+92 300 0249960';
 
 export const OrderSection: React.FC<OrderSectionProps> = ({
   activeBottle,
@@ -73,7 +75,7 @@ export const OrderSection: React.FC<OrderSectionProps> = ({
   };
 
   const waHref = orderMessage
-    ? `${WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}` : 'https://wa.me/'}?text=${encodeURIComponent(orderMessage)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(orderMessage)}`
     : '#order';
 
   return (
@@ -91,8 +93,17 @@ export const OrderSection: React.FC<OrderSectionProps> = ({
             Get yours delivered.
           </h2>
           <p className="mt-2 text-xs text-slate-400">
-            Cash on Delivery · JazzCash · Easypaisa · 7-day replacement guarantee
+            Cash on Delivery · JazzCash · Easypaisa
           </p>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-2 rounded-lg border border-emerald-400/30 bg-emerald-400/10 px-3 py-2 text-xs font-semibold text-emerald-200 hover:border-emerald-300/60"
+          >
+            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+            Order on WhatsApp: {WHATSAPP_DISPLAY}
+          </a>
 
           {/* Synced 3D Configurator Options */}
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -247,7 +258,7 @@ export const OrderSection: React.FC<OrderSectionProps> = ({
             {orderMessage && (
               <div className="mt-4 rounded-xl border border-sky-400/35 bg-sky-400/8 p-4">
                 <p className="text-xs font-semibold text-sky-200">
-                  Order message ready to send:
+                  Your order is ready — tap “Send on WhatsApp” to send it to MOKHS ({WHATSAPP_DISPLAY}):
                 </p>
                 <pre className="mt-2 whitespace-pre-wrap font-mono text-xs leading-relaxed text-slate-200">
                   {orderMessage}
@@ -259,7 +270,7 @@ export const OrderSection: React.FC<OrderSectionProps> = ({
                     rel="noopener noreferrer"
                     className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-sky-400 px-4 text-xs font-semibold text-slate-950 transition-colors hover:bg-sky-300"
                   >
-                    Open WhatsApp
+                    Send on WhatsApp
                     <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                   </a>
                   <button

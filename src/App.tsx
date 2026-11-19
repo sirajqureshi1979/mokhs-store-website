@@ -7,6 +7,7 @@ import { MokhsMark, Navbar } from './components/Navbar';
 import { OrderSection } from './components/OrderSection';
 import { StudioDock } from './components/StudioDock';
 import { MotionAIStudio } from './components/MotionAIStudio';
+import { IntroSplash } from './components/IntroSplash';
 import { PumpSceneEngine } from './three/PumpSceneEngine';
 import type {
   BottleIndex,
@@ -375,7 +376,10 @@ export default function App() {
         onSelectFinish={handleSelectFinish}
       />
 
-      {/* MOKHS MOTION AI — prompt-to-motion director + reel recorder */}
+      {/* Intro reel shown while the site loads (once per visit) */}
+      <IntroSplash />
+
+      {/* MOKHS MOTION AI — owner tool, hidden from customers. Open the site with #studio to use it. */}
       <MotionAIStudio
         engineRef={engineRef}
         directing={directing}
