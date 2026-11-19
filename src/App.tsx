@@ -8,6 +8,7 @@ import { OrderSection } from './components/OrderSection';
 import { StudioDock } from './components/StudioDock';
 import { MotionAIStudio } from './components/MotionAIStudio';
 import { IntroSplash } from './components/IntroSplash';
+import { formatPKR, PRICE_PKR } from './pricing';
 import { PumpSceneEngine } from './three/PumpSceneEngine';
 import type {
   BottleIndex,
@@ -283,12 +284,21 @@ export default function App() {
                 Bas aik touch — aur saaf paani glass mein.
               </p>
 
+              <div className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-2">
+                <span className="font-display text-4xl font-extrabold text-white sm:text-5xl">
+                  {formatPKR(PRICE_PKR)}
+                </span>
+                <span className="inline-flex items-center rounded-md bg-emerald-400/15 px-2.5 py-1 text-xs font-bold text-emerald-300">
+                  FREE DELIVERY · All Pakistan
+                </span>
+              </div>
+
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href="#order"
                   className="inline-flex h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-sky-400 px-6 text-sm font-semibold text-slate-950 transition-colors duration-150 hover:bg-sky-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
                 >
-                  Order — Cash on Delivery
+                  Order Now — Cash on Delivery
                 </a>
                 <a
                   href="#bottles"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Check, Copy, ExternalLink, MessageCircle } from 'lucide-react';
 import { BOTTLE_SPECS, type BottleIndex, type PumpFinish } from '../three/types';
+import { DELIVERY_PKR, formatPKR, PRICE_PKR } from '../pricing';
 
 interface OrderSectionProps {
   activeBottle: BottleIndex;
@@ -49,9 +50,13 @@ export const OrderSection: React.FC<OrderSectionProps> = ({
     const bottleLabel = BOTTLE_SPECS[activeBottle].shortLabel;
     const finishLabel = finish === 'white' ? 'Pearl White' : 'Obsidian Black';
 
+    const qtyNum = Number(qty) || 1;
     const msg = [
       'Assalam o Alaikum MOKHS! I want to order:',
       `• Product: MOKHS Automatic Water Pump (${finishLabel}) × ${qty}`,
+      `• Price: ${formatPKR(PRICE_PKR)} each`,
+      `• Delivery: ${DELIVERY_PKR ? formatPKR(DELIVERY_PKR) : 'Free'}`,
+      `• Total: ${formatPKR(PRICE_PKR * qtyNum + DELIVERY_PKR)}`,
       `• Primary bottle size: ${bottleLabel}`,
       `• Name: ${name.trim()}`,
       `• Phone: ${phone.trim()}`,
@@ -87,11 +92,17 @@ export const OrderSection: React.FC<OrderSectionProps> = ({
       <div className="mx-auto w-full max-w-[1360px]">
         <div className="w-full max-w-[540px] rounded-2xl border border-sky-200/14 bg-[#051022]/90 p-6 sm:p-8 lg:w-[45vw]">
           <p className="text-xs font-medium tracking-wide text-sky-300">
-            Nationwide delivery across Pakistan
+            Free delivery across Pakistan
           </p>
           <h2 className="mt-2.5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Get yours delivered.
           </h2>
+          <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-2">
+            <span className="font-display text-4xl font-extrabold text-white">{formatPKR(PRICE_PKR)}</span>
+            <span className="inline-flex items-center rounded-md bg-emerald-400/15 px-2.5 py-1 text-xs font-bold text-emerald-300">
+              FREE DELIVERY
+            </span>
+          </div>
           <p className="mt-2 text-xs text-slate-400">
             Cash on Delivery · JazzCash · Easypaisa
           </p>
@@ -247,6 +258,16 @@ export const OrderSection: React.FC<OrderSectionProps> = ({
                 {error}
               </p>
             )}
+
+            <div className="flex items-center justify-between rounded-lg border border-sky-200/12 bg-[#081933] px-3.5 py-2.5 text-sm">
+              <span className="text-slate-300">
+                {qty} × {formatPKR(PRICE_PKR)} · Delivery{' '}
+                <span className="font-semibold text-emerald-300">{DELIVERY_PKR ? formatPKR(DELIVERY_PKR) : 'Free'}</span>
+              </span>
+              <span className="font-bold text-white">
+                Total {formatPKR(PRICE_PKR * (Number(qty) || 1) + DELIVERY_PKR)}
+              </span>
+            </div>
 
             <button
               type="submit"
