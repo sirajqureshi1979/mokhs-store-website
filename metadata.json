@@ -1,0 +1,6 @@
+{
+  "name": "MOKHS — Smart Automatic Water Pump 3D Showcase",
+  "description": "Interactive 3D full-motion product showcase for the MOKHS Automatic Water Pump featuring step-by-step bottle-drop choreography across 5-gallon, 3-gallon, and 1.5L bottles, exploded engineering assembly, and instant ordering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

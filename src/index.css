@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    background-color: #030b17;
+    color: #eaf4ff;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+    background:
+      radial-gradient(1100px 680px at 78% 14%, rgba(34, 199, 255, 0.14), transparent 62%),
+      radial-gradient(880px 620px at 12% 84%, rgba(14, 88, 212, 0.18), transparent 60%),
+      linear-gradient(180deg, #041126 0%, #030b17 55%, #020710 100%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+ /* ---------- MOKHS Motion AI ---------- */
+main,
+header,
+footer,
+.studio-dock,
+.motion-launcher {
+  transition: opacity 0.5s ease;
+}
+
+html[data-motion='on'] main,
+html[data-motion='on'] header,
+html[data-motion='on'] footer,
+html[data-motion='on'] .studio-dock {
+  opacity: 0;
+  pointer-events: none !important;
+}
+
+html[data-motion='on'],
+html[data-motion='on'] body {
+  overflow: hidden;
+}
+
+.motion-caption {
+  animation: motion-caption-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes motion-caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
